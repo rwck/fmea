@@ -16,9 +16,7 @@
   <%= @project.id %>
 </p>
 
-<% if false %>
-
-<% if Issue.where("project_id": @project.id) != [] %>
+<% if (Issue.where("project_id": @project.id) != []) %>
 <h2>
   Issues within Project:
   <%= @project.name %>
@@ -53,7 +51,6 @@
 <% end %>
 <% end %>
 
-<% end %>
 
 <%= link_to 'Edit', edit_project_path(@project) %>
 |
