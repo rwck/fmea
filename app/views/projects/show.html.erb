@@ -16,6 +16,9 @@
   <%= @project.id %>
 </p>
 
+
+<% if false %>
+
 <% if (Issue.where("project_id": @project.id) != []) %>
 <h2>
   Issues within Project:
@@ -49,6 +52,8 @@
   <strong>Issue severity:</strong> <%= issue[:risk_level] %>
 </p>
 <% end %>
+<% end %>
+
 <% end %>
 
 
