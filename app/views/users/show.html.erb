@@ -1,0 +1,104 @@
+<p id="notice"><%= notice %></p>
+
+<div>
+
+  <p>
+    <!-- <strong>Firstname:</strong> -->
+    <% if @user.firstname && @user.lastname %>
+    <%= @user.firstname %>
+
+    <!-- <strong>Lastname:</strong> -->
+    <%= @user.lastname %>
+    |
+    <% end %>
+
+    <%= @user.email %>
+  </p>
+
+  <p>
+    <!-- <strong>Email:</strong> -->
+
+  </p>
+  <div class="show-page-image">
+    <%= image_tag(@user.picture, :class => "person_picture") %>
+  </div>
+  <div class="projects">
+    <% @projects.each do |proj| %>
+    <ul>
+      <li>
+        <%= link_to "#{proj.name}", project_path(proj.id) %>
+        <%= proj.name %>
+      </li>
+    </ul>
+
+    <% end %>
+  </div>
+  <p>
+    <!-- <strong>Picture:</strong> -->
+
+  </p>
+
+  <p>
+    User ID is
+    <%= @user.id%>
+  </p>
+  <% if current_user.id == @user.id %>
+  <% if @user.projects != [] %>
+  <h2>
+    Projects owned by
+    <%= @user.firstname %>
+    <%= @user.lastname %>
+  </h2>
+  <% else %>
+
+  <% end %>
+  <% end %>
+
+  <h2>
+    <% if current_user.firstname %>
+    Come on,
+    <%= current_user.firstname %>!
+    <br>
+    It's time to create a project of your own.
+    <% else %>
+    It would be great if you could fill in some more of your profile. Click
+    <%= link_to "here", edit_user_path, class: "link" %>
+    to do that.
+    <% end %>
+  </h2>
+
+  <%= link_to "Create a new project", new_project_path %>
+
+  <!--
+(:owner => @user.id) -->
+
+  <!-- <p>
+  <strong>Firstname:</strong>
+  <%= @user.firstname %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @user.lastname %>
+</p> -->
+
+  <!-- <p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Picture:</strong>
+  <%= image_tag(@user.picture, :class => "person_picture") %>
+</p> -->
+
+  <% if @user.phone != "" %>
+  <p>
+    <strong>Phone:</strong>
+    <%= @user.phone %>
+  </p>
+  <% end %>
+
+  <%= render 'users/shared/links' %>
+
+</div>

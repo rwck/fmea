@@ -1,0 +1,69 @@
+<%= form_for(@project) do |f| %>
+<% if @project.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@project.errors.count, "error") %>
+    prohibited this project from being saved:</h2>
+
+  <ul>
+    <% @project.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<div class="field">
+  <!-- <%= f.label :name %><br> -->
+  <%= f.text_field :name, placeholder: "Name your project" %>
+</div>
+
+<% if false %>
+<div class="field">
+  <%= f.label :user_id %><br>
+  <%= f.text_field :user_id %>
+  <% pp "params are " + params.to_s %>
+</div>
+<% end %>
+
+<% if false %>
+<div class="field">
+  <%= f.label :user_id %><br>
+
+  <%= f.text_field :user_id %>
+  <% end %>
+
+  <% if false %>
+  <%= f.collection_select :user, @users.user_id, User.all, :id, include_blank: true %>
+  <% end %>
+
+  <% if false %>
+  <% @users.each do |user| %>
+  <%= user.firstname %>
+  <%= user.id %>
+  <% end %>
+
+  <%= @users %>
+  <%= options_from_collection_for_select(User.all, :id, :firstname) %>
+  <% end %>
+
+  <% if false %>
+  <div>
+    <%= select_tag "project[user_id]", options_from_collection_for_select(@users, "id", "firstname", include_blank: true)  %>
+  </div>
+  <% end %>
+  <% if false %>
+  <div>
+    Owner of project is:
+    <%= current_user.firstname %>
+    <%= params[:owner] %>
+  </div>
+  <%= f.hidden_field :user_id %>
+  <% end %>
+
+  <% pp "params are " + params.to_s %>
+</div>
+
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>

@@ -1,0 +1,157 @@
+<p id="notice"><%= notice %></p>
+
+<h1>List of issues:
+  <%= current_user.firstname %>
+  <%= current_user.lastname %>
+  <% if false %>
+  <%= current_user %>
+  <% end %>
+
+</h1>
+
+<div class="message-to-user">
+  <% if !current_user.issues.first %>
+  <p>
+    You have no issues. This is good news indeed.
+  </p>
+  <p>
+    Unless, of course, you actually do have issues.
+  </p>
+  <p>
+    In which case, you have more work to do.
+  </p>
+  <p>
+    First,
+    <%= link_to "create a project", new_project_path %>.
+  </p>
+  <p>
+    Then you can start documenting your issues.
+  </p>
+  <% end %>
+</div>
+
+<table>
+
+  <thead>
+    <tbody>
+      <% @issues.each do |issue| %>
+      <tr>
+        <th>Item</th>
+        <td><%= issue.item %></td>
+      </tr>
+      <tr>
+        <th>Project Owner</th>
+        <td>
+          <%= @user.firstname %>
+          <%= @user.lastname %>
+        </td>
+      </tr>
+
+      <tr>
+        <th>Project Name</th>
+        <td><%= issue.project.name %></td>
+      </tr>
+
+      <tr>
+        <th>Function</th>
+        <td><%= issue.function %></td>
+      </tr>
+      <tr>
+        <th>Failure</th>
+        <td><%= issue.failure %></td>
+      </tr>
+
+      <tr>
+        <th>Effect of failure</th>
+        <td><%= issue.effect_of_failure %></td>
+      </tr>
+
+      <tr>
+        <th>Cause of failure</th>
+        <td><%= issue.cause_of_failure %></td>
+
+      </tr>
+
+      <tr>
+        <th>Current controls</th>
+
+        <td><%= issue.current_controls %></td>
+
+      </tr>
+
+      <tr>
+        <th>Recommended actions</th>
+
+        <td><%= issue.recommended_actions %></td>
+      </tr>
+
+      <tr>
+        <th>Probability estimate</th>
+        <td><%= issue.probability_estimate %></td>
+
+      </tr>
+
+      <tr>
+        <th>Severity estimate</th>
+
+        <td><%= issue.severity_estimate %></td>
+      </tr>
+
+      <tr>
+        <th>Detection indicators</th>
+
+        <td><%= issue.detection_indicators %></td>
+      </tr>
+
+      <tr>
+        <th>Detection dormancy period</th>
+
+        <td><%= issue.detection_dormancy_period %></td>
+      </tr>
+
+      <tr>
+        <th>Risk level</th>
+
+        <td><%= issue.risk_level %></td>
+      </tr>
+
+      <tr>
+        <th>Further investigation</th>
+        <td><%= issue.further_investigation %></td>
+      </tr>
+
+      <tr>
+        <td>
+          <%= link_to 'Show', issue %>
+          <%= link_to 'Edit', edit_issue_path(issue) %>
+          <% if !@project %>
+          <%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+        </td>
+        <td></td>
+
+        <% if false %>
+        <tr>
+          <th colspan="3"></th>
+          <td><%= link_to 'Show', issue %></td>
+          <td><%= link_to 'Edit', edit_issue_path(issue) %></td>
+          <% if !@project %>
+          <td><%= link_to 'Destroy', issue, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+
+        </tr>
+        <% end %>
+
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <p>
+      <%= @my_variable  %>
+    </p>
+
+    <% if false %>
+    <%= link_to 'New Issue', new_issue_path %>
+    <% end %>

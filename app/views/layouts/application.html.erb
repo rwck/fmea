@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>FmeaV1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+
+    <%= stylesheet_link_tag  'https://fonts.googleapis.com/css?family=Raleway:400,600|Bitter:400,700|Cutive+Mono', media: 'all' %>
+
+
+      <link href='https://fonts.googleapis.com/css?family=Cutive+Mono' rel='stylesheet' type='text/css'>
+
+      <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+        <%= csrf_meta_tags %>
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="edge">
+
+      <% if !signed_in? && controller_name != 'registrations'%>
+
+        <div class="edge-left">
+          Don't have an account?
+          <%= link_to "Sign up", new_user_registration_path %>
+        </div>
+
+        <% end %>
+
+          <% if !user_signed_in? && controller_name != 'sessions' %>
+          <div class="edge-right">
+            Already signed up?
+            <%= link_to "Log in", new_user_session_path %>
+          </div>
+          <% end %>
+
+
+
+            <% if user_signed_in? %>
+
+              <span class="edge-left">
+
+
+
+
+                <%= current_user.firstname %>
+                  <%= current_user.lastname %>
+                    <% if current_user.admin %> | You are an admin user
+                      <% end %>
+                        <%= link_to "Edit profile", edit_user_path(current_user) %>
+
+              </span>
+
+              <span class="edge-right">
+
+                <%= link_to "Log out", destroy_user_session_path, method: :DELETE %>
+              </span>
+              <% end %>
+    </div>
+
+
+    <div class="main-heading">
+      <% if false %>
+        <% if user_signed_in? %>
+          <h1>
+            Welcome to the FMEA app. Thanks for signing in.
+          </h1>
+          <% else %>
+
+            <h1>
+              You're not signed in. Get to it!!!
+            </h1>
+            <% end %>
+              <% end %>
+
+
+                <% if controller_name == "registrations" %>
+                  <div class="roll-up">
+                    <h1>SIGN UP</h1>
+                  </div>
+                  <% elsif controller_name == "sessions" %>
+                    <div class="roll-up">
+                      <h1>LOG IN</h1>
+                    </div>
+
+
+
+                    <% end %>
+    </div>
+
+
+    <div class="nav">
+      <% if signed_in? %>
+        <%= link_to "Users", users_path %>
+          <%= link_to "Issues", issues_path %>
+            <%= link_to "Projects", projects_path %>
+              <%= link_to "New Project", new_project_path %>
+                <% end %>
+    </div>
+
+
+
+
+
+    <% if false %>
+      <% if notice %>
+        <p class="alert alert-success">
+          <%= notice %>
+        </p>
+        <% end %>
+          <% if alert %>
+            <p class="alert alert-danger">
+              <%= alert %>
+            </p>
+            <% end %>
+              <% end %>
+
+
+                <div class="main basic-style">
+                  <%= yield %>
+                </div>
+
+  </div>
+</body>
+
+</html>

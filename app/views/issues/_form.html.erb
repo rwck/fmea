@@ -1,0 +1,83 @@
+<%= form_for([@project, @issue]) do |f| %>
+
+<% if @issue.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@issue.errors.count, "error") %>
+    prohibited this issue from being saved:</h2>
+
+  <ul>
+    <% @issue.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+<%= f.hidden_field :project_id %>
+
+<div class="field">
+  <%= f.text_field :item, autofocus: true, placeholder: "what is the process step or input?" %>
+</div>
+
+<% if false %>
+<div class="field">
+  <%= f.text_field :function, placeholder: "what can and does go wrong with it?" %>
+</div>
+
+<% end %>
+<div class="field">
+  <%= f.text_field :failure, placeholder: "what tends to go wrong with it?" %>
+</div>
+<div class="field">
+  <%= f.text_field :effect_of_failure, placeholder: "what is the main impact once it goes wrong?" %>
+</div>
+
+<div class="field">
+  <%= f.number_field :severity_estimate, placeholder: "how severe is the effect to the customer? (1 = not severe; 10 = extremely severe)" %>
+</div>
+
+<div class="field">
+  <%= f.text_field :cause_of_failure, placeholder: "what causes it to go wrong?" %>
+</div>
+<div class="field">
+  <%= f.number_field :detection_dormancy_period, placeholder: "how often does it go wrong? (1 = not often; 10 = very often)" %>
+</div>
+<div class="field">
+  <%= f.text_field :current_controls, placeholder: "what steps are currently taken to prevent it from going wrong?" %>
+</div>
+
+
+<% if false %>
+<div class="field">
+  <%= f.number_field :probability_estimate, placeholder: "probability estimate" %>
+</div>
+<% end %>
+
+<div class="field">
+  <%= f.number_field :detection_indicators, placeholder: "how easy is it to tell when it's gone wrong? (1 = very easy; 10 = very hard)"  %>
+</div>
+
+<% if false %>
+
+<div class="field">
+  <%= f.text_field :recommended_actions, placeholder: "recommended actions" %>
+</div>
+
+<div class="field">
+  <%= f.number_field :risk_level, placeholder: "risk level" %>
+</div>
+<div class="field">
+  <%= f.text_field :further_investigation, placeholder: "further investigation" %>
+</div>
+
+<% end %>
+
+<% if false %>
+<div class="field">
+  <%= f.text_field :project_id %>
+</div>
+<% end %>
+<div class="actions">
+  <%= f.submit %>
+</div>
+<% end %>
